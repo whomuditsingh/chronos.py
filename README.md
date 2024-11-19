@@ -1,2 +1,2 @@
 # chronos.py
-my 150 PYTHON codes
+My explorations in PYTHON,distilled into several programs.
