@@ -1,0 +1,50 @@
+from collections import deque
+
+def water_jug(jug1, jug2, target):
+    visited = set()
+    queue = deque()
+# Initial state
+    queue.append((0, 0, []))
+
+    while queue:
+        x, y, path = queue.popleft()
+
+        # Skip already visited states
+        if (x, y) in visited:
+            continue
+
+        visited.add((x, y))
+        path = path + [(x, y)]
+
+        # Check if target is reached
+        if x == target or y == target:
+            print("Solution Found!\n")
+            for step in path:
+                print(f"Jug1 = {step[0]}L, Jug2 = {step[1]}L")
+            return
+
+        # Possible operations
+        next_states = [
+            (jug1, y),                      
+            (x, jug2),                      
+            (0, y),                         
+            (x, 0),                         
+            # Pour Jug1 -> Jug2
+            (max(0, x - (jug2 - y)), min(jug2, y + x)),
+            # Pour Jug2 -> Jug1
+            (min(jug1, x + y), max(0, y - (jug1 - x)))
+        ]
+
+        for state in next_states:
+            if state not in visited:
+                queue.append((state[0], state[1], path))
+
+    print("No solution exists.")
+
+
+# Driver Code
+jug1_capacity = 4
+jug2_capacity = 3
+target = 2
+
+water_jug(jug1_capacity, jug2_capacity, target)
