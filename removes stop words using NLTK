@@ -1,0 +1,36 @@
+import nltk
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
+
+# Download required NLTK data(only first time)
+nltk.download('punkt')
+nltk.download('stopwords')
+
+# Open and read the text file
+with open("input.txt", "r") as file:
+    text = file.read()
+
+# Tokenize the text into words
+words = word_tokenize(text)
+
+# Load English stop words
+stop_words = set(stopwords.words('english'))
+
+# Remove stop words
+filtered_words = [word for word in words if word.lower() not in stop_words]
+
+# Join the filtered words into a sentence
+filtered_text = " ".join(filtered_words)
+
+# Display the results
+print("Original Text:\n")
+print(text)
+
+print("\nText After Removing Stop Words:\n")
+print(filtered_text)
+
+# Save the filtered text to a new file
+with open("output.txt", "w") as file:
+    file.write(filtered_text)
+
+print("\nFiltered text has been saved to 'output.txt'.")
