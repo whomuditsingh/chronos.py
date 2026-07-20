@@ -1,0 +1,22 @@
+import nltk
+from nltk.tokenize import word_tokenize
+from nltk import pos_tag
+
+# Download required NLTK resources
+nltk.download('punkt')
+nltk.download('averaged_perceptron_tagger')
+
+# Input sentence
+sentence = input("Enter a sentence: ")
+
+# Tokenize the sentence
+words = word_tokenize(sentence)
+
+# Perform POS tagging
+tagged_words = pos_tag(words)
+
+# Display the results
+print("\nParts of Speech (POS) Tags:\n")
+
+for word, tag in tagged_words:
+    print(f"{word:15} --> {tag}")
