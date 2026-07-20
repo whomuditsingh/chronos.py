@@ -1,0 +1,30 @@
+import nltk
+from nltk.tokenize import word_tokenize
+from nltk.stem import WordNetLemmatizer
+
+# Download required NLTK resources
+nltk.download('punkt')
+nltk.download('wordnet')
+nltk.download('omw-1.4')
+
+# Create a lemmatizer object
+lemmatizer = WordNetLemmatizer()
+
+# Input sentence
+sentence = input("Enter a sentence: ")
+
+# Tokenize the sentence into words
+words = word_tokenize(sentence)
+
+# Apply lemmatization
+lemmatized_words = [lemmatizer.lemmatize(word) for word in words]
+
+# Display results
+print("\nOriginal Words:")
+print(words)
+
+print("\nLemmatized Words:")
+print(lemmatized_words)
+
+print("\nLemmatized Sentence:")
+print(" ".join(lemmatized_words))
