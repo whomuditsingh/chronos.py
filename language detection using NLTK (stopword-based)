@@ -1,0 +1,33 @@
+import nltk
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
+
+# Download required resources
+nltk.download('punkt')
+nltk.download('stopwords')
+
+# Input text
+text = input("Enter a sentence: ").lower()
+
+# Tokenize the sentence
+words = word_tokenize(text)
+
+# Languages to check
+languages = ['english', 'french', 'spanish', 'german', 'italian']
+
+scores = {}
+
+# Count matching stopwords for each language
+for language in languages:
+    stop_words = set(stopwords.words(language))
+    count = sum(1 for word in words if word in stop_words)
+    scores[language] = count
+
+# Detect language
+detected_language = max(scores, key=scores.get)
+
+print("\nLanguage Scores:")
+for language, score in scores.items():
+    print(f"{language.capitalize():10}: {score}")
+
+print("\nDetected Language:", detected_language.capitalize())
